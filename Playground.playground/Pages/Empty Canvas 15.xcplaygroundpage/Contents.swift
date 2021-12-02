@@ -1,10 +1,10 @@
 //: [Previous](@previous) / [Next](@next)
 /*:
-## Canvas size
+ ## Canvas size
  
  Set the size of your desired canvas by adjusting the constants on lines 7 and 8.
  */
-let preferredWidth = 600
+let preferredWidth = 400
 let preferredHeight = 600
 /*:
  ## Required code
@@ -41,50 +41,107 @@ PlaygroundPage.current.liveView = canvas
  */
 
 // Move the origin from the bottom-left corner of the canvas to it's centre point
-canvas.translate(to: Point(x: canvas.width / 2,
-                           y: canvas.height / 2))
+
 
 // Show a grid
-canvas.drawAxes(withScale: true, by: 20, color: .black)
+
 
 /*:
  ## Add your code
  
  Beginning on line 61, you can add your own code.
-  
+ 
  [Documentation](http://russellgordon.ca/CanvasGraphics/Documentation/) is available.
-
+ 
  */
+canvas.defaultLineWidth = 1
 
-// Begin writing your code below (you can remove the examples shown)
+let currentcolour = Color(hue: 14,
+                          saturation: 94,
+                          brightness: 95,
+                          alpha: 100)
 
-// Draw a circle, using the canvas object directly
-canvas.drawEllipse(at: Point(x: 100, y: 100), width: 25, height: 25)
+let yellow = Color(hue: 47,
+                  saturation: 71,
+                  brightness: 94,
+                  alpha: 100)
 
-// Draw a vertical line, up and to the left
-p.drawTo(dx: -25, dy: 50)
+let grey = Color(hue: 71,
+                  saturation: 5,
+                  brightness: 86,
+                  alpha: 100)
 
-// Go back to origin
-p.goToOrigin()
+canvas.fillColor = currentcolour
 
-// Change the pen color
-p.penColor = .red
+canvas.drawRectangle(at: Point(x: 0, y: 0), width: 400, height: 600)
 
-// Draw a curve, down and to the right
-p.addArc(radius: 50, angle: -45)
+canvas.drawAxes(withScale: true, by: 50, color: .white)
 
-/*:
- ## Show the Live View
- Don't see any results?
- 
- Remember to show the Live View (1 then 2):
- 
- ![timeline](timeline.png "Timeline")
+canvas.fillColor = .white
 
- ## Use source control
- To keep your work organized, receive feedback, and earn a high grade in this course, regular use of source control is a must.
- 
- Please commit and push your work often.
- 
- ![source_control](source-control.png "Source Control")
- */
+var triangleVertices: [Point] = []
+triangleVertices.append(Point(x: 0, y: 200))
+triangleVertices.append(Point(x: 45, y: 200))
+triangleVertices.append(Point(x: 45, y: 245))
+
+canvas.drawCustomShape(with: triangleVertices)
+
+
+for horizontalPosition in stride(from: 0, through: 400, by: 45)
+{
+    
+    
+    
+    for verticalPosition in stride(from: 200, through: 600, by: 45) {
+        
+        
+        
+        //decide on colour
+        if verticalPosition - horizontalPosition <= 200 {
+            
+            canvas.fillColor = yellow
+        } else {
+            canvas.fillColor = grey
+            
+        }
+        var triangleVertices: [Point] = []
+        //left point
+        triangleVertices.append(Point(x: horizontalPosition + 0 , y: verticalPosition + 0))
+        //right point
+        triangleVertices.append(Point(x: horizontalPosition + 45 , y: verticalPosition + 0))
+        //top point
+        triangleVertices.append(Point(x: horizontalPosition + 45 , y: verticalPosition + 45))
+        
+        canvas.drawCustomShape(with: triangleVertices)
+       
+        canvas.textColor = grey
+        canvas.drawText(message: "talking heads", at:Point(x: 20, y: 140 ), size: 40)
+        
+        canvas.drawText(message: "friday, saturday, sunday", at:Point(x: 20, y: 40 ), size: 10, kerning: 0)
+        
+        canvas.drawText(message: "september 12, 13, 14, 1975 ", at:Point(x: 20, y: 20 ), size: 10, kerning: 0)
+        
+        
+        
+        
+        
+        
+//
+//        // Print statement that shows the difference of the y and x position
+//        canvas.drawText(message: "\(Int(verticalPosition - horizontalPosition))",
+//                        at: Point(x: Int(horizontalPosition) - 20,
+//                                          y: Int(verticalPosition)),
+//                                size: 11)
+        
+    }
+    
+   
+}
+
+
+
+canvas.drawAxes(withScale: true, by: 50, color: .white)
+
+
+
+
