@@ -57,21 +57,22 @@ canvas.drawAxes(withScale: true, by: 20, color: .black)
  */
 
 
-
-for value in stride(from: 0,
-                    through: 100,
-                    by: 1) {
+canvas.defaultLineWidth = 6
+for value in stride(from: 30,
+                    through: 130,
+                    by:1) {
     
-    let currentcolour = Color(hue: 0,
+    let currentcolour = Color(hue: 200,
                               saturation: 80,
                               brightness: value,
                               alpha: 100)
     
+    
     canvas.lineColor = currentcolour
     
-    canvas.drawLine(from: Point(x: value, y: 100), to: Point(x: value, y: 200))
-    
+    canvas.drawLine(from: Point(x: 0, y: value * 3), to: Point(x: 600, y: value * 3))
 }
+
 
 
 /*:

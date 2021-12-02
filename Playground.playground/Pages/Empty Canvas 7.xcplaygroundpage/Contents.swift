@@ -41,8 +41,7 @@ PlaygroundPage.current.liveView = canvas
  */
 
 // Move the origin from the bottom-left corner of the canvas to it's centre point
-canvas.translate(to: Point(x: canvas.width / 2,
-                           y: canvas.height / 2))
+
 
 // Show a grid
 canvas.drawAxes(withScale: true, by: 20, color: .black)
@@ -55,23 +54,23 @@ canvas.drawAxes(withScale: true, by: 20, color: .black)
  [Documentation](http://russellgordon.ca/CanvasGraphics/Documentation/) is available.
 
  */
+p.goto(dx: 350, dy: 350)
+canvas.fillColor = .white
+canvas.borderColor = .black
+canvas.drawShapesWithBorders = true
+canvas.drawEllipse(at: Point(x: 0, y: 0 ), width: 50, height: 50, borderWidth: 6)
 
-// Begin writing your code below (you can remove the examples shown)
+p.goto(dx: 50, dy: 50)
+canvas.fillColor = .black
+canvas.drawEllipse(at: Point(x: 0, y: 0), width: 10, height: 15)
+p.goto(dx: 13, dy: 10)
 
-// Draw a circle, using the canvas object directly
-canvas.drawEllipse(at: Point(x: 100, y: 100), width: 25, height: 25)
+canvas.drawEllipse(at: Point(x: 0, y: 0), width: 10, height: 15)
+p.goto(dx: 13, dy: 0)
 
-// Draw a vertical line, up and to the left
-p.drawTo(dx: -25, dy: 50)
-
-// Go back to origin
-p.goToOrigin()
-
-// Change the pen color
-p.penColor = .red
-
-// Draw a curve, down and to the right
-p.addArc(radius: 50, angle: -45)
+canvas.drawEllipse(at: Point(x: 0, y: 0), width: 10, height: 15)
+p.goto(dx: 10, dy: -10)
+canvas.drawEllipse(at: Point(x: 0, y: 0), width: 10, height: 15)
 
 /*:
  ## Show the Live View
