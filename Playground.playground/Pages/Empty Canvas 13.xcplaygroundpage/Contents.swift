@@ -1,10 +1,10 @@
 //: [Previous](@previous) / [Next](@next)
 /*:
-## Canvas size
+ ## Canvas size
  
  Set the size of your desired canvas by adjusting the constants on lines 7 and 8.
  */
-let preferredWidth = 600
+let preferredWidth = 400
 let preferredHeight = 600
 /*:
  ## Required code
@@ -16,6 +16,7 @@ let preferredHeight = 600
 import Cocoa
 import PlaygroundSupport
 import CanvasGraphics
+import AppKit
 
 // Create canvas
 let canvas = Canvas(width: preferredWidth, height: preferredHeight)
@@ -41,50 +42,86 @@ PlaygroundPage.current.liveView = canvas
  */
 
 // Move the origin from the bottom-left corner of the canvas to it's centre point
-canvas.translate(to: Point(x: canvas.width / 2,
-                           y: canvas.height / 2))
 
-// Show a grid
-canvas.drawAxes(withScale: true, by: 20, color: .black)
+
 
 /*:
  ## Add your code
  
  Beginning on line 61, you can add your own code.
-  
+ 
  [Documentation](http://russellgordon.ca/CanvasGraphics/Documentation/) is available.
-
+ 
  */
+let purple = Color(hue: 306,
+                   saturation: 68,
+                   brightness: 59,
+                   alpha: 100)
 
-// Begin writing your code below (you can remove the examples shown)
 
-// Draw a circle, using the canvas object directly
-canvas.drawEllipse(at: Point(x: 100, y: 100), width: 25, height: 25)
+canvas.fillColor = .black
 
-// Draw a vertical line, up and to the left
-p.drawTo(dx: -25, dy: 50)
+canvas.drawRectangle(at: Point(x: 0, y: 0), width: 400, height: 600)
+canvas.textColor = .white
 
-// Go back to origin
-p.goToOrigin()
+canvas.lineColor = .white
+canvas.drawLine(from: Point(x: 0, y: 460), to: Point(x: 400, y: 460))
 
-// Change the pen color
-p.penColor = .red
 
-// Draw a curve, down and to the right
-p.addArc(radius: 50, angle: -45)
 
-/*:
- ## Show the Live View
- Don't see any results?
- 
- Remember to show the Live View (1 then 2):
- 
- ![timeline](timeline.png "Timeline")
+canvas.drawText(message: "the velvet underground", at: Point(x: 10, y: 410), size: 30, kerning: 0)
 
- ## Use source control
- To keep your work organized, receive feedback, and earn a high grade in this course, regular use of source control is a must.
- 
- Please commit and push your work often.
- 
- ![source_control](source-control.png "Source Control")
- */
+canvas.drawText(message: "first apperance in london", at: Point(x: 25, y: 535), size: 8, kerning: 0)
+
+canvas.drawText(message: "the london college of printing", at: Point(x: 25, y: 525), size: 8, kerning: 0)
+
+canvas.drawText(message: "with spring and pollyfloskin", at: Point(x: 160, y: 535), size: 8, kerning: 0)
+
+canvas.drawText(message: "plus the great western light show ", at: Point(x: 160, y: 525), size: 8, kerning: 0)
+
+canvas.drawText(message: "thursday", at: Point(x: 310, y: 535), size: 8, kerning: 0)
+
+canvas.drawText(message: "october 14 1971 / 8pm", at: Point(x: 310, y: 525), size: 8, kerning: 0)
+
+canvas.drawLine(from: Point(x: 0, y: 560), to: Point(x: 400, y: 560))
+canvas.fillColor = .white
+
+
+
+for xPosition in stride(from: 0, to: 400, by: 80)
+{
+    
+    
+    for yPosition in stride(from: 0, to: 400, by: 80) {
+        
+        if xPosition == yPosition {
+            canvas.fillColor = .white
+        } else { canvas.fillColor = purple
+        }
+        
+        
+        
+        var arrowVertices: [Point] = []
+        arrowVertices.append(Point(x: xPosition + 0, y: yPosition + 0))
+        arrowVertices.append(Point(x: xPosition + 60, y: yPosition + 0))
+        arrowVertices.append(Point(x: xPosition + 60, y: yPosition + 15))
+        arrowVertices.append(Point(x: xPosition + 25, y: yPosition + 15))
+        
+        arrowVertices.append(Point(x: xPosition + 80, y: yPosition + 70))
+        arrowVertices.append(Point(x: xPosition + 70, y: yPosition + 80))
+        
+        arrowVertices.append(Point(x: xPosition + 15, y: yPosition + 25))
+        arrowVertices.append(Point(x: xPosition + 15, y: yPosition + 60))
+        arrowVertices.append(Point(x: xPosition + 0, y: yPosition + 60))
+        arrowVertices.append(Point(x: xPosition + 0, y: yPosition + 0))
+        
+        canvas.drawCustomShape(with: arrowVertices)
+        
+        
+        
+    }
+    
+    
+    
+    
+}

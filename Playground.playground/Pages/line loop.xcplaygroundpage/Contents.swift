@@ -4,8 +4,8 @@
  
  Set the size of your desired canvas by adjusting the constants on lines 7 and 8.
  */
-let preferredWidth = 600
-let preferredHeight = 600
+let preferredWidth = 400
+let preferredHeight = 400
 /*:
  ## Required code
  
@@ -58,14 +58,14 @@ p.penColor = .red
 
 
 
-for someValue in stride(from: 0, through: 600, by: 50) {
+for someValue in stride(from: 0, through: 400, by: 50) {
     
-    canvas.drawLine(from: Point(x: someValue, y: 0), to: Point(x: 600, y: someValue))
+    canvas.drawLine(from: Point(x: someValue, y: 0), to: Point(x: 400, y: someValue))
     
-    canvas.drawLine(from: Point(x: 0, y: someValue), to: Point(x: someValue, y: 600))
-    canvas.drawLine(from: Point(x: 600, y: someValue), to: Point(x: 600-someValue, y: 600))
+    canvas.drawLine(from: Point(x: 0, y: someValue), to: Point(x: someValue, y: 400))
+    canvas.drawLine(from: Point(x: 400, y: someValue), to: Point(x: 400-someValue, y: 400))
     
-    canvas.drawLine(from: Point(x:someValue, y: 0  ), to: Point(x: 0, y: 600-someValue))
+    canvas.drawLine(from: Point(x:someValue, y: 0  ), to: Point(x: 0, y: 400-someValue))
 }
 
 /*:
