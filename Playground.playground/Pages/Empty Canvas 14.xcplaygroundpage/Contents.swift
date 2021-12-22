@@ -4,7 +4,7 @@
  
  Set the size of your desired canvas by adjusting the constants on lines 7 and 8.
  */
-let preferredWidth = 600
+let preferredWidth = 400
 let preferredHeight = 600
 /*:
  ## Required code
@@ -41,11 +41,10 @@ PlaygroundPage.current.liveView = canvas
  */
 
 // Move the origin from the bottom-left corner of the canvas to it's centre point
-canvas.translate(to: Point(x: canvas.width / 2,
-                           y: canvas.height / 2))
+
 
 // Show a grid
-canvas.drawAxes(withScale: true, by: 20, color: .black)
+canvas.drawAxes(withScale: true, by: 50, color: .black)
 
 /*:
  ## Add your code
@@ -55,23 +54,79 @@ canvas.drawAxes(withScale: true, by: 20, color: .black)
  [Documentation](http://russellgordon.ca/CanvasGraphics/Documentation/) is available.
 
  */
+// draw black background
+canvas.fillColor = .black
+canvas.drawRectangle(at: Point(x: 0, y: 0), width: 400, height: 600)
 
-// Begin writing your code below (you can remove the examples shown)
+// draw green rectangle
+canvas.fillColor = .green
+canvas.drawRectangle(at: Point(x: 0, y: 400), width: 400, height: 200)
 
-// Draw a circle, using the canvas object directly
-canvas.drawEllipse(at: Point(x: 100, y: 100), width: 25, height: 25)
 
-// Draw a vertical line, up and to the left
-p.drawTo(dx: -25, dy: 50)
+//draw grid of circles
+for verticalPosition in stride (from: 0, through: 400, by: 40) {
 
-// Go back to origin
-p.goToOrigin()
-
-// Change the pen color
-p.penColor = .red
-
-// Draw a curve, down and to the right
-p.addArc(radius: 50, angle: -45)
+    for horizontalPosition in stride (from: 0, through: 400, by: 40) {
+   
+        // decide on colour
+        if horizontalPosition == 0 ||
+            horizontalPosition == 400 ||
+        verticalPosition == 0 ||
+            verticalPosition == 400 ||
+            verticalPosition + horizontalPosition == 440 ||
+            verticalPosition + horizontalPosition == 480 ||
+            verticalPosition + horizontalPosition == 520 ||
+            verticalPosition + horizontalPosition == 560 ||
+            verticalPosition + horizontalPosition == 600 ||
+            verticalPosition + horizontalPosition == 640 ||
+            verticalPosition + horizontalPosition == 680 ||
+            verticalPosition + horizontalPosition == 720
+        {
+            
+            canvas.fillColor = .green
+        } else {
+            canvas.fillColor = .white
+        }
+        //"pixies"
+        canvas.textColor = .black
+        canvas.drawText(message: "Pixies", at:Point(x: 20, y: 400), size: 60)
+        
+       // "with throwing muses big dipper"
+        canvas.textColor = .white
+         canvas.drawText(message: "with", at:Point(x: 260, y: 450), size: 13)
+         canvas.drawText(message: "throwing", at:Point(x: 260, y: 430), size: 13)
+         canvas.drawText(message: "muses big dipper", at:Point(x: 260, y: 410), size: 13)
+        
+        // saturday december 13 1986 9 pm over 21
+        canvas.textColor = .black
+        canvas.drawText(message: "Saturday", at:Point(x: 20, y: 570), size: 12)
+        canvas.drawText(message: "December 13 1986", at:Point(x: 20, y: 550), size: 12)
+        canvas.drawText(message: "9 Pm over 21", at:Point(x: 20, y: 530), size: 12)
+        
+        //at the rat    528 commonwealth    boston, mass.
+        
+        canvas.drawText(message: "At the rat", at:Point(x: 260, y: 570), size: 12)
+        
+        canvas.drawText(message: "528 Commonwealth", at:Point(x: 260, y: 550), size: 12)
+        
+        canvas.drawText(message: "Boston, mass.", at:Point(x: 260, y: 530), size: 12)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // actually draw circle
+       
+        canvas.drawEllipse(at: Point(x: horizontalPosition, y: verticalPosition), width: 37, height: 37)
+    }
+   
+}
 
 /*:
  ## Show the Live View
